@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.hero-section {
+  width: 100vw;
+  
+  display: flexbox;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+
+}
+
