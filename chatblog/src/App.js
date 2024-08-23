@@ -24,6 +24,15 @@ function App() {
       setTotalConnected(data);
     });
 
+    socket.on('chat-history', (history) => {
+      const formattedMessages = history.map(msg => ({
+        name: msg.name,
+        message: msg.messageContent,
+        dateTime: msg.dateTime
+      }))
+      setMessages(formattedMessages);
+    });
+
     socket.on('chat-message', (messageData) => {
       setMessages((prevMessages) => [...prevMessages, messageData]);
     });
@@ -36,6 +45,7 @@ function App() {
     return () => {
       socket.off('connect');
       socket.off('total-connected');
+      socket.off('chat-history');
       socket.off('chat-message');
       socket.off('connect_error');
     };
@@ -54,7 +64,7 @@ function App() {
 
     
     // hvis objektet er tomt gjør ingenting, for å unngå å sende tomme meldinger
-    if (Object.keys(messageData.message).length === 0){
+    if (!messageData.message.trim()){
       return;
     } else {
       // sender data til server
@@ -90,7 +100,7 @@ function App() {
       <ul className="message-container">
         {messages.map((messageData, index) => (
           <li key={index} className="message">
-            <span className="username">from: {messageData.name}</span>
+            <span className="name">from: {messageData.name}</span>
             <p>{messageData.message}</p>
             <span className="date">{moment(messageData.dateTime).fromNow()}</span>
           </li>
