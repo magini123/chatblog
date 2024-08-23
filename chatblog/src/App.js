@@ -52,10 +52,16 @@ function App() {
       dateTime: new Date()
     };
 
-    // sender data til server
-    socket.emit('message', messageData);
-    // oppdaterer meldinger
-    setMessages((prevMessages) => [...prevMessages, messageData]);
+    
+    // hvis objektet er tomt gjør ingenting, for å unngå å sende tomme meldinger
+    if (Object.keys(messageData.message).length === 0){
+      return;
+    } else {
+      // sender data til server
+      socket.emit('message', messageData);
+      // oppdaterer meldinger på siden
+      setMessages((prevMessages) => [...prevMessages, messageData]);
+    }
     // tømmer message input feltet
     setMessageInput('');
   };

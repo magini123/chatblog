@@ -1,3 +1,4 @@
+// npm run dev for å starte server
 const express = require('express')
 const path = require('path')
 const http = require('http')
@@ -51,10 +52,15 @@ function onConnected(socket) {
         console.log(`Total clients connected: ${socketsConnected.size}`)
     });
 
-    // håndterer ny melding
+    // sender ny melding
     socket.on('message', (messageData) => {
-        socket.broadcast.emit('chat-message', messageData)
-        console.log("id: ", socket.id, "melding: ", messageData)
+        // sjekker om meldingen i objektet er tomt før sender melding
+        if (Object.keys(messageData.message).length === 0){
+          return;
+        } else {
+          socket.broadcast.emit('chat-message', messageData)
+          console.log("Client id:", socket.id, "Message:", messageData)
+        }
     })
 }
 
