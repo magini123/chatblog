@@ -1,10 +1,10 @@
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+
 }
 
 body {
@@ -12,33 +12,21 @@ body {
   place-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main {
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.name {
   display: flex;
 }
 
+.name-input {
 
+}
 
 .message li{
   list-style: none;
 
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .date {
@@ -46,53 +34,20 @@ body {
   margin-bottom: 10px;
 }
 
-.feedback {
 
+
+
+.feedback {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.message-form input.message-input {
+  width: calc(100% - 100px);
+  padding: 1px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.hero-section {
-  width: 100vw;
-  
-  display: flexbox;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-
+.message-form .send-button {
+  width: 80px;
+  padding: 1px;
 }
 
