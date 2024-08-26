@@ -1,0 +1,12 @@
+.message-container {
+    padding-left: 10px;
+    list-style-type: none;
+}
+
+.message-container>li {
+    border: 10px;
+}
+
+.username {
+    padding-left: 20px;
+}

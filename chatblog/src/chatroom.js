@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import io from 'socket.io-client';
 import moment from 'moment';
+import './chatroom.css'
 
 // kobler til server
 const socket = io('http://localhost:8080');
