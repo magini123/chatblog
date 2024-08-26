@@ -20,10 +20,7 @@ body {
 
 
 
-.message li{
-  list-style: none;
 
-}
 
 .date {
   display: block;
@@ -34,10 +31,7 @@ body {
   text-align: center;
 }
 
-.message-form input.message-input {
-  width: calc(100% - 100px);
-  padding: 1px;
-}
+
 
 .message-form .send-button {
   width: 80px;

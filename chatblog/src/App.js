@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from './Home';
-import Directmessage from './Directmessage';
 import Chatroom from './chatroom';
 import './App.css';
 // ... import other pages
@@ -15,9 +14,7 @@ function App() {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/directmessage">Directmessage</Link>
-            </li>
+            
             <li>
               <Link to="/chatroom">Chatroom</Link>
             </li>
@@ -30,7 +27,6 @@ function App() {
             renders the first one that matches the current URL. */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/directmessage" element={<Directmessage />} />
           <Route path="/chatroom" element={<Chatroom />} />
           {/* ... other routes */}
         </Routes>
