@@ -4,12 +4,13 @@ const path = require('path')
 const http = require('http')
 const socketio = require('socket.io')
 const cors = require('cors')
-
+var message
 const app = express();
 
 // konfigurerer cors for å tillate requests fra port 3000
 app.use(cors({
   origin: 'http://localhost:3000',
+  origin: 'http://localhost:3000/chatroom.html',
   methods: ['GET', 'POST'], 
   credentials: true
 }));
