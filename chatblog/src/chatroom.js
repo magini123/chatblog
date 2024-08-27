@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import moment from 'moment';
 
 // kobler til server
-const socket = io('http://localhost:8080');
+const socket = io('://localhost:8080');
 
 function Chat() {
   // state hooks for totalt tilkoblet, array med chatmeldinger, navn, melding input
@@ -16,12 +16,22 @@ function Chat() {
   // setter opp eventlisteners
   useEffect(() => {
     socket.on('connect', () => {
+      socket.emit('chat-history', History)
       console.log('Connected to server with id:', socket.id);
     });
 
     socket.on('total-connected', (data) => {
       console.log('Total connected clients:', data);
       setTotalConnected(data);
+    });
+
+    socket.on('chat-history', (History) => {
+      const formattedMessages = History.map(msg => ({
+        name: msg.name,
+        message: msg.messageContent,
+        dateTime: msg.dateTime
+      }))
+      setMessages(formattedMessages);
     });
 
     socket.on('chat-message', (messageData) => {
@@ -36,6 +46,7 @@ function Chat() {
     return () => {
       socket.off('connect');
       socket.off('total-connected');
+      socket.off('chat-history');
       socket.off('chat-message');
       socket.off('connect_error');
     };
@@ -54,7 +65,7 @@ function Chat() {
 
     
     // hvis objektet er tomt gjør ingenting, for å unngå å sende tomme meldinger
-    if (Object.keys(messageData.message).length === 0){
+    if (!messageData.message.trim()){
       return;
     } else {
       // sender data til server

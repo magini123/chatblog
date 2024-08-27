@@ -25,30 +25,29 @@ async function getChatlog() {
 
 getChatlog()
 
-async function addMessage(name, messageContent) {
+async function getChatlog() {
   try {
-    const sql = "INSERT INTO chat1 (name, messageContent) VALUES (?, ?)";
-    const [result] = await pool.query(sql, [name, messageContent]);
-    // console.log("Message added:", result);
-    return result;
+      const [rows] = await pool.query("SELECT * FROM chat1 ORDER BY dateTime ASC")
+      return rows;
   } catch (error) {
-    console.error("Error adding message:", error);
+      console.error("Error executing query:", error)
+      return []
   }
 }
+
 
 const app = express();
 
 // konfigurerer cors for å tillate requests fra port 3000
+
 app.use(cors({
   origin: 'http://localhost:3000',
-
   methods: ['GET', 'POST'],
-
-  origin: 'http://localhost:3000/chatroom.html',
-  methods: ['GET', 'POST'], 
-
   credentials: true
 }));
+
+
+
 
 // lager http server
 const server = http.createServer(app)
@@ -56,7 +55,7 @@ const server = http.createServer(app)
 // setter opp socket.io med cors config
 const io = socketio(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000/chatroom',
     methods: ['GET', 'POST'],
     credentials: true
   }
@@ -76,8 +75,14 @@ function onConnected(socket) {
   console.log(`Client connected with id: ${socket.id}`);
   socketsConnected.add(socket.id)
 
+  for (var i = 0; i < socketsConnected.length; i++) {
+    if (!socketsConnected.has(socket.id)) {
+
+    }
+  }
+
   getChatlog().then(chatHistory => {
-    socket.emit('chat-history', chatHistory)
+    io.emit('chat-history', chatHistory)
   }).catch(error => {
     console.error("Error getting chat history:", error)
   })
@@ -115,3 +120,10 @@ function onConnected(socket) {
 // port
 const PORT = process.env.PORT || 8080
 server.listen(PORT, () => console.log(`server on port ${PORT}`))
+
+process.on('SIGINT', () => {
+  pool.end(() => {
+      console.log('MySQL pool closed');
+      process.exit(0);
+  });
+});
