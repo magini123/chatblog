@@ -1,0 +1,8 @@
+CREATE DATABASE chatlog;
+USE chatlog;
+
+CREATE TABLE chat1 (
+    name VARCHAR(20) NOT NULL,
+    messageContent TEXT NOT NULL,
+    dateTime DATETIME DEFAULT CURRENT_TIMESTAMP
+);

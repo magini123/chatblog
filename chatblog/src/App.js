@@ -6,6 +6,7 @@ import Chatroom from './chatroom';
 // ... import other pages
 
 function App() {
+
   return (
     <Router>
       <div>
@@ -33,7 +34,9 @@ function App() {
           {/* ... other routes */}
         </Routes>
       </div>
+
     </Router>
+
   );
 }
 
