@@ -41,7 +41,12 @@ const app = express();
 // konfigurerer cors for å tillate requests fra port 3000
 app.use(cors({
   origin: 'http://localhost:3000',
+
   methods: ['GET', 'POST'],
+
+  origin: 'http://localhost:3000/chatroom.html',
+  methods: ['GET', 'POST'], 
+
   credentials: true
 }));
 
