@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from './Home';
-import About from './About';
 import Chatroom from './chatroom';
+import './App.css';
 // ... import other pages
 
 function App() {
@@ -11,25 +11,23 @@ function App() {
     <Router>
       <div>
         <nav>
-          <ul>
+          <ul className="navbar" style={{width:"100vw", display:"flex", alignContent:"center", justifyContent:"space-evenly", justifyItems:"center", backgroundColor:"lightblue", listStyleType:"none"}}>
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
+            
             <li>
               <Link to="/chatroom">Chatroom</Link>
             </li>
-            {/* ... other links */}
+          
           </ul>
+          
         </nav>
 
         {/* A <Routes> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/chatroom" element={<Chatroom />} />
           {/* ... other routes */}
         </Routes>

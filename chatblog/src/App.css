@@ -18,14 +18,9 @@ body {
   display: flex;
 }
 
-.name-input {
 
-}
 
-.message li{
-  list-style: none;
 
-}
 
 .date {
   display: block;
@@ -36,12 +31,20 @@ body {
   text-align: center;
 }
 
-.message-form input.message-input {
-  width: calc(100% - 100px);
-  padding: 1px;
-}
+
 
 .message-form .send-button {
   width: 80px;
   padding: 1px;
+}
+
+.navbar>li {
+  padding: 10px;
+  
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+  border-radius: 50%;
+  background-image: radial-gradient( yellow 15%, green 120%);
+  background-clip: border-box;
 }

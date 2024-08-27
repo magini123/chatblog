@@ -1,0 +1,32 @@
+.message-container {
+    padding-left: 10px;
+    list-style-type: none;
+    
+}
+
+
+
+.username {
+    padding-left: 20px;
+}
+
+.message-form {
+    
+    width: 95vw;
+}
+.message-input {
+    width: 70vw;
+}
+
+
+
+.message{
+    list-style: none;
+    border: 2px;
+    border-style: solid;
+    padding-left: 3px;
+    
+    background-color: rgb(241, 241, 241);
+    margin-top: 3px; 
+  
+  }
